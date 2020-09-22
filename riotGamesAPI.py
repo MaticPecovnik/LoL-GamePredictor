@@ -7,8 +7,9 @@ from riotwatcher import LolWatcher, ApiError
 
 from processMatch import processMatch
 from saveMatch import saveMatch
+import config
 
-apiKey = "RGAPI-fdb5f7de-e2a3-4c64-a38c-262de72ef29d"
+apiKey = config.apiKey
 lol_watcher = LolWatcher(apiKey)
 
 dir_path = os.path.join(os.getcwd(), "data", "matchIDs.txt")
