@@ -14,14 +14,9 @@ lol_watcher = LolWatcher(apiKey)
 
 dir_path = os.path.join(os.getcwd(), "data", "matchIDs.txt")
 matchIDs = np.loadtxt(dir_path, dtype=str, delimiter=", ")
-processedMatches = [
-    [],  # game state after 5 minuts of play
-    [],  # game state after 10 minuts of play
-    [],  # game state after 15 minuts of play
-    [],  # game state after 20 minuts of play
-    [],  # game state after 25 minuts of play
-    []   # game state after 30 minuts of play
-]
+
+# Saving the data for each minute between 5 min and including 40 min.
+processedMatches = [[] for i in range(36)]
 
 print("Calling the Riot API... Downloading data for " +
       str(len(matchIDs)) + " matches.")
@@ -52,6 +47,8 @@ for (k, matchID) in enumerate(matchIDs):
     sys.stdout.write("\rProcessed: " + str(k + 1) + " of " +
                      str(len(matchIDs)) + " matches. Estimated time to end: " + str(time_to_end) + "s")
     sys.stdout.flush()
-
+print()
+print("Saving the match data.")
 for (i, matches) in enumerate(processedMatches):
-    saveMatch(matches, "match_summary_" + str((i+1)*5) + "min.csv")
+    saveMatch(matches, "match_summary_" + str(i + 5) + "min.csv")
+print("Done!")

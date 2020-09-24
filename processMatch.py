@@ -124,11 +124,4 @@ def processMatch(match_timeline):
 
             return agg_data
 
-    return (
-        processToFrame(match_timeline, 5),
-        processToFrame(match_timeline, 10),
-        processToFrame(match_timeline, 15),
-        processToFrame(match_timeline, 20),
-        processToFrame(match_timeline, 25),
-        processToFrame(match_timeline, 30)
-    )
+    return (processToFrame(match_timeline, 5 + i) for i in range(36))
