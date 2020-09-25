@@ -42,7 +42,10 @@ for (k, matchID) in enumerate(matchIDs):
 
     stop_time = time.time()
     time_diff = stop_time - start_time
-    time_to_end = np.round(time_diff*(len(matchIDs) - (k + 1)), 1)
+    remaining_matches = len(matchIDs) - (k + 1)
+    remaining_waitimes = remaining_matches // 50
+    time_to_end = np.round(time_diff*remaining_matches +
+                           75*remaining_waitimes, 1)
 
     sys.stdout.write("\rProcessed: " + str(k + 1) + " of " +
                      str(len(matchIDs)) + " matches. Estimated time to end: " + str(time_to_end) + "s")
